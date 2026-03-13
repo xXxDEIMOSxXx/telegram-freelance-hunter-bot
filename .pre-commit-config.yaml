@@ -1,0 +1,49 @@
+fail_fast: true  # prevent commit even with code 2 (small error/typo)
+
+repos:
+  # Isort
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Isort — import check
+        args: [--check-only, --verbose ]
+
+  # Ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        name: Ruff — style and errors check
+        args: [--verbose]  # without --fix - just show the problems, but not fixed them
+
+  # Ruff format
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff-format
+        name: Ruff — formating check
+        args: [--check, --diff, --verbose]
+
+  # Pylint
+  - repo: https://github.com/pycqa/pylint
+    rev: v3.2.7
+    hooks:
+      - id: pylint
+        name: Pylint — deep code analysis
+        entry: poetry run pylint
+        language: system
+        types: [ python ]
+        args: [ --rcfile=pyproject.toml, src/ ]
+
+  # Basic check
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-merge-conflict
+      - id: detect-private-key
