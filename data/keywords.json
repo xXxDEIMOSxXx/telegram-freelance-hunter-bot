@@ -1,0 +1,196 @@
+{
+  "categories": {
+     "programming": {
+      "description": "Programming: WEB, Python, HTML, CSS, JS, React",
+      "keywords": [
+        {"id": 1, "term": "пайтон"},
+        {"id": 2, "term": "python"},
+        {"id": 3, "term": "html"},
+        {"id": 4, "term": "css"},
+        {"id": 5, "term": "js"},
+        {"id": 6, "term": "веб"},
+        {"id": 7, "term": "react"},
+        {"id": 8, "term": "сайт"},
+        {"id": 9, "term": "сайту"},
+        {"id": 10, "term": "фронтенд"},
+        {"id": 11, "term": "бекенд"},
+        {"id": 12, "term": "frontend"},
+        {"id": 13, "term": "front end"},
+        {"id": 14, "term": "backend"},
+        {"id": 15, "term": "back end"}
+      ]
+    },
+
+    "operating_systems": {
+      "description": "Operating systems: Linux, Windows",
+      "keywords": [
+        {"id": 1, "term": "linux"},
+        {"id": 2, "term": "windows"},
+        {"id": 3, "term": "bat"},
+        {"id": 4, "term": "операційні"},
+        {"id": 5, "term": "операційним"}
+      ]
+    },
+
+    "software": {
+      "description": "Software: telegram bot, applications",
+      "keywords": [
+        {"id": 1, "term": "пз"},
+        {"id": 2, "term": "програмне забезпечення"},
+        {"id": 3, "term": "програмного забезпечення"},
+        {"id": 4, "term": "телеграм бот"},
+        {"id": 5, "term": "телеграм бота"},
+        {"id": 6, "term": "застосунок"},
+        {"id": 7, "term": "застосунку"}
+      ]
+    },
+
+    "assembler": {
+      "description": "Assembler",
+      "keywords": [
+        {"id": 1, "term": "асемблер"},
+        {"id": 2, "term": "ассемблер"},
+        {"id": 3, "term": "assembler"},
+        {"id": 4, "term": "asembler"},
+        {"id": 5, "term": "masm"}
+      ]
+    },
+
+    "office": {
+      "description": "Office: Word, Eexcel, OneNote, PowerPoint, Visio",
+      "keywords": [
+        {"id": 1, "term": "visio"},
+        {"id": 2, "term": "візіо"},
+        {"id": 3, "term": "word"},
+        {"id": 4, "term": "ворд"},
+        {"id": 5, "term": "ворді"},
+        {"id": 6, "term": "excel"},
+        {"id": 7, "term": "ексель"},
+        {"id": 8, "term": "екселі"},
+        {"id": 9, "term": "onenote"},
+        {"id": 10, "term": "one note"},
+        {"id": 11, "term": "powerpoint"},
+        {"id": 12, "term": "power point"}
+      ]
+    },
+
+    "informatics": {
+      "description": "Informatics",
+      "keywords": [
+        {"id": 1, "term": "інформатика"}
+      ]
+    },
+
+    "diagrams_modeling": {
+      "description": "Diagrams",
+      "keywords": [
+        {"id": 1, "term": "uml"},
+        {"id": 2, "term": "bpmn"},
+        {"id": 3, "term": "usecase"},
+        {"id": 4, "term": "diagram"},
+        {"id": 5, "term": "діаграму"},
+        {"id": 6, "term": "діаграма"},
+        {"id": 7, "term": "діаграми"}
+      ]
+    },
+
+    "electronics": {
+      "description": "Electronics: Multisim, Workbench",
+      "keywords": [
+        {"id": 1, "term": "multisim"},
+        {"id": 2, "term": "мультісім"},
+        {"id": 3, "term": "workbench"},
+        {"id": 4, "term": "воркбенч"},
+        {"id": 5, "term": "electronic"}
+      ]
+    },
+
+    "simulation": {
+      "description": "Simulation: AnyLogic",
+      "keywords": [
+        {"id": 1, "term": "anylogic"},
+        {"id": 2, "term": "any logic"}
+      ]
+    },
+
+    "databases": {
+      "description": "Databases: Access, SQL, SQLLite, SQLServer, MySQL, PostgreSQL, NoSQL, Oracle, MongoDB",
+      "keywords": [
+        {"id": 1, "term": "бд"},
+        {"id": 2, "term": "db"},
+        {"id": 3, "term": "бази даних"},
+        {"id": 4, "term": "база даних"},
+        {"id": 5, "term": "баз даних"},
+        {"id": 6, "term": "базы даных"},
+        {"id": 7, "term": "баз даных"},
+        {"id": 8, "term": "access"},
+        {"id": 9, "term": "аксес"},
+        {"id": 10, "term": "oracle"},
+        {"id": 11, "term": "оракл"},
+        {"id": 12, "term": "sqllite"},
+        {"id": 13, "term": "mongodb"},
+        {"id": 14, "term": "mongo db"},
+        {"id": 15, "term": "монго"},
+        {"id": 16, "term": "sqlserver"},
+        {"id": 17, "term": "sql server"},
+        {"id": 18, "term": "sql"},
+        {"id": 19, "term": "management"},
+        {"id": 20, "term": "postgresql"},
+        {"id": 21, "term": "postgre"}
+      ]
+    },
+
+    "networking": {
+      "description": "Networking: Packet Tracer, Wireshark, Filius, NetCracker",
+      "keywords": [
+        {"id": 1, "term": "filius"},
+        {"id": 2, "term": "філіус"},
+        {"id": 3, "term": "wireshark"},
+        {"id": 4, "term": "wires hark"},
+        {"id": 5, "term": "netcracker"},
+        {"id": 6, "term": "net cracker"},
+        {"id": 7, "term": "ciscopackettracer"},
+        {"id": 8, "term": "cisco packet tracer"},
+        {"id": 9, "term": "мереж"},
+        {"id": 10, "term": "мережі"},
+        {"id": 11, "term": "мережам"},
+        {"id": 12, "term": "мережа"}
+      ]
+    },
+
+    "cad": {
+      "description": "CAD and 3D: AutoCAD, SolidWorks, 3ds Max, Fusion360, Компас",
+      "keywords": [
+        {"id": 1, "term": "3dsmax"},
+        {"id": 2, "term": "3dmax"},
+        {"id": 3, "term": "3ds max"},
+        {"id": 4, "term": "autocad"},
+        {"id": 5, "term": "auto cad"},
+        {"id": 6, "term": "автокад"},
+        {"id": 7, "term": "аутокад"},
+        {"id": 8, "term": "cad"},
+        {"id": 9, "term": "fusion 360"},
+        {"id": 10, "term": "fusion"},
+        {"id": 11, "term": "360"},
+        {"id": 12, "term": "solidworks"},
+        {"id": 13, "term": "solid works"},
+        {"id": 14, "term": "solid"},
+        {"id": 15, "term": "солід"},
+        {"id": 16, "term": "compas"},
+        {"id": 17, "term": "компас"},
+        {"id": 18, "term": "компасу"},
+        {"id": 19, "term": "креслення"},
+        {"id": 20, "term": "інженерна графіка"},
+        {"id": 21, "term": "ікг"},
+        {"id": 22, "term": "комп'ютерна графіка"},
+        {"id": 23, "term": "графіка"},
+        {"id": 24, "term": "інеженерна та комп.графіка"},
+        {"id": 25, "term": "комп.графіка"},
+        {"id": 26, "term": "черчение"},
+        {"id": 27, "term": "чертеж"},
+        {"id": 28, "term": "3д"},
+        {"id": 29, "term": "3d"}
+      ]
+    }
+  }
+}
