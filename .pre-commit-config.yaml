@@ -3,15 +3,15 @@ fail_fast: true  # prevent commit even with code 2 (small error/typo)
 repos:
   # Isort
   - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
+    rev: 8.0.1
     hooks:
       - id: isort
         name: Isort — import check
-        args: [--check-only, --verbose ]
+        args: [--verbose ]
 
   # Ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    rev: v0.15.6
     hooks:
       - id: ruff
         name: Ruff — style and errors check
@@ -19,7 +19,7 @@ repos:
 
   # Ruff format
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    rev: v0.15.6
     hooks:
       - id: ruff-format
         name: Ruff — formating check
@@ -27,7 +27,7 @@ repos:
 
   # Pylint
   - repo: https://github.com/pycqa/pylint
-    rev: v3.2.7
+    rev: v4.0.5
     hooks:
       - id: pylint
         name: Pylint — deep code analysis
@@ -38,7 +38,7 @@ repos:
 
   # Basic check
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer

@@ -8,7 +8,7 @@ from src.bootstrap import bootstrap
 async def main():
     """Main function"""
 
-    bootstrap()
+    await bootstrap()
 
 
 if __name__ == "__main__":

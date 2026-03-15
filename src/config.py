@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str
     DB_NAME: str
+    DB_ECHO: bool
 
     # Data path
     DATA_DIR: Path = Field(default=Path("data"))
@@ -66,6 +67,15 @@ class Settings(BaseSettings):
             "password": self.DB_PASSWORD,
             "database": self.DB_NAME,
         }
+
+    @property
+    def db_url(self) -> str:
+        """Async PostgreSQL URL for SQLAlchemy/asyncpg"""
+
+        return (
+            f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@"
+            f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        )
 
 
 settings = Settings()
