@@ -212,3 +212,4 @@ __marimo__/
 /.idea/vcs.xml
 /.idea/workspace.xml
 /.idea/dictionaries/project.xml
+/data/cache/keyword_forms.json
