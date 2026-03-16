@@ -14,7 +14,7 @@ from src.utils.logger import logger
 
 engine: AsyncEngine = create_async_engine(
     settings.db_url,
-    echo=getattr(settings, "DB_ECHO", False),
+    # echo=getattr(settings, "DB_ECHO", False),  # if u need database logs
     future=True,
     pool_size=5,
     max_overflow=10,
