@@ -11,9 +11,14 @@ init(autoreset=True)  # autoreset string color
 class ColoredFormatter(logging.Formatter):
     """Formatter with colored log messages"""
 
+    # set success level
+    SUCCESS = 25  # between INFO and WARNING
+    logging.addLevelName(SUCCESS, "SUCCESS")
+
     LEVEL_COLORS = {  # color palette
         logging.DEBUG: Fore.LIGHTCYAN_EX,
-        logging.INFO: Fore.LIGHTGREEN_EX,
+        logging.INFO: Fore.LIGHTWHITE_EX,
+        SUCCESS: Fore.LIGHTGREEN_EX,
         logging.WARNING: Fore.LIGHTYELLOW_EX,
         logging.ERROR: Fore.LIGHTRED_EX,
         logging.CRITICAL: Fore.LIGHTMAGENTA_EX,
@@ -26,7 +31,10 @@ class ColoredFormatter(logging.Formatter):
 
 
 def setup_logger(
-    name: str = "freelance_bot_logger", level: int = logging.INFO
+    name: str = "freelance_bot_logger",
+    level: int = logging.INFO,
+    log_to_file: bool = True,  # if u need save log to file - set True
+    log_file: str = "bot.log",
 ) -> logging.Logger:
     """Setup and return a logger"""
 
@@ -39,11 +47,29 @@ def setup_logger(
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setFormatter(
             ColoredFormatter(
-                "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+                "%(asctime)s.%(msecs)03d [%(levelname)s] %(name)s: %(message)s",
                 datefmt="%Y-%m-%d %H:%M:%S",
             )
         )
         custom_logger.addHandler(console_handler)
+
+    if log_to_file:
+        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        file_handler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s [%(levelname)-7s] %(name)s: %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
+            )
+        )
+        custom_logger.addHandler(file_handler)
+
+    def success(self, message, *args, **kwargs):
+        """Additional logging function"""
+
+        if self.isEnabledFor(ColoredFormatter.SUCCESS):
+            self._log(ColoredFormatter.SUCCESS, message, args, **kwargs)  # pylint: disable=protected-access
+
+    logging.Logger.success = success
 
     return custom_logger
 

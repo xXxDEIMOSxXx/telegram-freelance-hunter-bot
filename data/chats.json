@@ -3,168 +3,168 @@
     "id": 1,
     "name": "TestMy",
     "url": "https://t.me/TestMyChannelVi",
-    "telegram_id": "-1002153367152"
+    "chat_id": "-1002153367152"
   },
   {
     "id": 2,
     "name": "TestMyGroup",
     "url": "https://t.me/TestMyGroupBotWork",
-    "telegram_id": "-1002327618461"
+    "chat_id": "-1002327618461"
   },
   {
     "id": 3,
     "name": "🇺🇦 Гелікоптер",
     "url": "https://t.me/RunAsHelicopter",
-    "telegram_id": "-1001302195525"
+    "chat_id": "-1001302195525"
   },
   {
     "id": 4,
     "name": "🍀 Допомога студентам",
     "url": "https://t.me/student_help_ua",
-    "telegram_id": "-1001279746025"
+    "chat_id": "-1001279746025"
   },
   {
     "id": 5,
     "name": "☃️ Допомога студентам НУ «ЛП» ☃️",
     "url": "https://t.me/nulp_help",
-    "telegram_id": "-1001402591748"
+    "chat_id": "-1001402591748"
   },
   {
     "id": 6,
     "name": "Чат допомоги студентам Франка",
     "url": "https://t.me/franka_help",
-    "telegram_id": "-1001418410149"
+    "chat_id": "-1001418410149"
   },
   {
     "id": 7,
     "name": "Допомога студентам || KNEU 🏛",
     "url": "https://t.me/kneustudentshelp",
-    "telegram_id": "-1001589500830"
+    "chat_id": "-1001589500830"
   },
   {
     "id": 8,
     "name": "Не парься 📚",
     "url": "-",
-    "telegram_id": "-1001427418159"
+    "chat_id": "-1001427418159"
   },
   {
     "id": 9,
     "name": "Метнись кабанчиком",
     "url": "https://t.me/metniskabanchikom",
-    "telegram_id": "-1001689204208"
+    "chat_id": "-1001689204208"
   },
   {
     "id": 10,
     "name": "🇺🇦 ДОПОМОГА СТУДЕНТАМ УКРАЇНИ 🇺🇦",
     "url": "https://t.me/dopomoga_studentam",
-    "telegram_id": "-1001755943180"
+    "chat_id": "-1001755943180"
   },
   {
     "id": 11,
     "name": "Технічні університети-задачі",
     "url": "https://t.me/kpi_zadachi",
-    "telegram_id": "-1001969827592"
+    "chat_id": "-1001969827592"
   },
   {
     "id": 12,
     "name": "Студенти Київ ⦁ Official Chat",
     "url": "https://t.me/studenty_kiev",
-    "telegram_id": "-1001352283143"
+    "chat_id": "-1001352283143"
   },
   {
     "id": 13,
     "name": "Patronus",
     "url": "https://t.me/+dFI0tIqEzJZjM2Zi",
-    "telegram_id": "-1001463711732"
+    "chat_id": "-1001463711732"
   },
   {
     "id": 14,
     "name": "Архітектурний факультет КНУБЯТНІ",
     "url": "https://t.me/chatARCH",
-    "telegram_id": "-1001147413556"
+    "chat_id": "-1001147413556"
   },
   {
     "id": 15,
     "name": "ІМІТ ⚙️ НУ \"ЛП\"",
     "url": "https://t.me/nulp_iimt",
-    "telegram_id": "-1001373043236"
+    "chat_id": "-1001373043236"
   },
   {
     "id": 16,
     "name": "Задачі КНУБА",
     "url": "https://t.me/zadachi_KNUBA",
-    "telegram_id": "-1001470108827"
+    "chat_id": "-1001470108827"
   },
   {
     "id": 17,
     "name": "Допомога студентам України📚",
     "url": "https://t.me/help_students_group",
-    "telegram_id": "-1001746186963"
+    "chat_id": "-1001746186963"
   },
   {
     "id": 18,
     "name": "ЗАМОВЛЕННЯ Lucky_studenttt",
     "url": "https://t.me/+XlFJM1Jzt9ZhY2Ey",
-    "telegram_id": "-1001684129356"
+    "chat_id": "-1001684129356"
   },
   {
     "id": 19,
     "name": "Барахолка студентська 📣",
     "url": "https://t.me/studentsbaraholka",
-    "telegram_id": "-1001228665033"
+    "chat_id": "-1001228665033"
   },
   {
     "id": 20,
     "name": "ШПАРГАЛОЧКА | Допомога студентам 🧠",
     "url": "https://t.me/Shparg",
-    "telegram_id": "-1001530943927"
+    "chat_id": "-1001530943927"
   },
   {
     "id": 21,
     "name": "Метнись кабанчиком - задачі",
     "url": "https://t.me/zadachi_vuziv",
-    "telegram_id": "-1001914230545"
+    "chat_id": "-1001914230545"
   },
   {
     "id": 22,
     "name": "Auxilium - взаємопоміч студентів",
     "url": "https://t.me/auxik_doc19",
-    "telegram_id": "-1001281325652"
+    "chat_id": "-1001281325652"
   },
   {
     "id": 23,
     "name": "🚝 Локомотив | Студентські роботи | Фріланс | Допомога студентам",
     "url": "https://t.me/lokomotyv_ua",
-    "telegram_id": "-1002226309850"
+    "chat_id": "-1002226309850"
   },
   {
     "id": 24,
     "name": "🚝 Локомотив | Для Виконавців",
     "url": "",
-    "telegram_id": "-1002216017474"
+    "chat_id": "-1002216017474"
   },
   {
     "id": 25,
     "name": "👩‍🎓Розумна Нора - Канал👨‍🎓",
     "url": "https://t.me/SmartBurrowChannel",
-    "telegram_id": "-1001300392478"
+    "chat_id": "-1001300392478"
   },
   {
     "id": 26,
     "name": "БАРАХОЛКА - ДТЕУ | КНТЕУ📚",
     "url": "https://t.me/knteu_sales",
-    "telegram_id": "-1001164437749"
+    "chat_id": "-1001164437749"
   },
   {
     "id": 27,
     "name": "Кмітлива нора",
     "url": "https://t.me/smart_hole",
-    "telegram_id": "-1001915911695"
+    "chat_id": "-1001915911695"
   },
   {
     "id": 28,
     "name": "Допомога ІХХТ",
     "url": "https://t.me/chemistrynulp",
-    "telegram_id": "-1001373687292"
+    "chat_id": "-1001373687292"
   }
 ]

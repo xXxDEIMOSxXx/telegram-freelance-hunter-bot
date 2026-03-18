@@ -1,16 +1,16 @@
 """Bootstrap module - application initialization"""
 
 from src.database.connection import init_database
-from src.services.blacklist_service import get_blacklist_values
-from src.services.keyword_service import generate_keyword_forms
-from src.services.network_service import check_telegram_api_connection
+from src.services.blacklist import get_blacklist
+from src.services.keywords import get_keywords
+from src.services.network import check_telegram_api_connection
 from src.utils.logger import logger
 
 
-async def bootstrap() -> None:
+async def bootstrap() -> bool:
     """
-    Coordinates the execution of all initialization steps.
-    Calls functions from the appropriate modules.
+    Coordinates the execution of all initialization steps
+    Calls functions from the appropriate modules
     """
 
     logger.info("Bootstrap - app initialisation started...")
@@ -18,9 +18,10 @@ async def bootstrap() -> None:
     try:
         await check_telegram_api_connection()
         await init_database()
-        generate_keyword_forms()
-        get_blacklist_values()
-        logger.info("Bootstrap - app initialisation successfully completed!")
-    except Exception:
-        logger.critical("Bootstrap - app initialisation failed!")
-        raise
+        get_keywords.preload()
+        get_blacklist.preload()
+        logger.success("Bootstrap - app initialisation successfully completed")
+        return True
+    except Exception as e:
+        logger.critical(f"Bootstrap - app initialisation failed {e}")
+        return False

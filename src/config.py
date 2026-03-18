@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     # Telegram Bot (aiogram)
     BOT_TOKEN: str
     BOT_CHAT_ID: int
+    LANG_CODE: str
+    SYSTEM_LANG_CODE: str
 
     # PostgreSQL database
     DB_HOST: str
@@ -29,32 +31,31 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str
     DB_NAME: str
-    DB_ECHO: bool
 
     # Data path
     DATA_DIR: Path = Field(default=Path("data"))
+    CHATS_FILE: Path
     KEYWORDS_FILE: Path
     BLACKLIST_FILE: Path
-    KEYWORD_FORMS_CACHE: Path
 
     # Helper properties
+    @property
+    def channels_and_groups_path(self) -> Path:
+        """Path to the channels and groups (chats) JSON file"""
+
+        return self.CHATS_FILE
+
     @property
     def keywords_path(self) -> Path:
         """Path to the keywords JSON file"""
 
-        return Path(self.KEYWORDS_FILE)
+        return self.KEYWORDS_FILE
 
     @property
     def blacklist_path(self) -> Path:
         """Path to the blacklist JSON file"""
 
-        return Path(self.BLACKLIST_FILE)
-
-    @property
-    def keyword_forms_path(self) -> Path:
-        """Path to the cached keyword forms JSON file"""
-
-        return Path(self.KEYWORD_FORMS_CACHE)
+        return self.BLACKLIST_FILE
 
     @property
     def db_config(self) -> dict:

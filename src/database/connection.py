@@ -17,6 +17,7 @@ engine: AsyncEngine = create_async_engine(
     # echo=getattr(settings, "DB_ECHO", False),  # if u need database logs
     future=True,
     pool_size=5,
+    pool_timeout=5,
     max_overflow=10,
     pool_pre_ping=True,
 )
@@ -49,27 +50,33 @@ def ensure_database_exists() -> None:
 
         if not exists:
             conn.execute(text(f'CREATE DATABASE "{settings.DB_NAME}"'))
-            logger.info(f"Database {settings.DB_NAME} created")
+            logger.success(f"Database {settings.DB_NAME} created")
         else:
-            logger.info(f"Database {settings.DB_NAME} already exists")
+            logger.success(f"Database {settings.DB_NAME} already exists")
 
 
 async def create_tables() -> None:
-    """Create all database tables"""
+    """Create database tables"""
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-    logger.info("Database tables created or already exist")
+    logger.success("Database tables created or already exist")
 
 
 async def init_database() -> None:
     """Check PostgreSQL connection and init database"""
 
-    async with engine.connect() as conn:
-        result = await conn.execute(text("SELECT 1"))
+    try:
+        ensure_database_exists()
+        await create_tables()
+
+        async with engine.connect() as conn:
+            result = await conn.execute(text("SELECT 1"))
 
         if result.scalar() == 1:
-            logger.info("PostgreSQL database connection successful")
+            logger.success("PostgreSQL database connection successful")
         else:
             logger.error("PostgreSQL database connection failed")
+    except Exception as e:
+        logger.error(f"PostgreSQL database connection failed {e}")

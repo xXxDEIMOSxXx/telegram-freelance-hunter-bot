@@ -1,0 +1,6 @@
+0. all > improve error catching - change simple "except Exception as e" to specific except-blocks
+1. all > improve data validation
+2. keywords.py / blacklist.py > as an improvement use redis/etc or other more advanced caching methods
+3. models.py > divide the general table into subtables: users, chats, history, etc.
+4. models.py > add indexes - if database continue to growing
+5. start.py / cleanup.py > make nice inline keyboard / menu, change start message
