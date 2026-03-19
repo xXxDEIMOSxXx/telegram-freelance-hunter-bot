@@ -1,4 +1,7 @@
-"""Bot cleanup func"""
+"""Bot message history cleanup handler
+
+Handles "Clear history" button press to delete recent bot messages from chat.
+"""
 
 import asyncio
 
@@ -10,20 +13,42 @@ from src.utils.logger import logger
 
 router = Router()
 
-MAX_DELETE_ATTEMPTS: int = 50  # delete limit
-DELETE_DELAY: float = 0.30
+MAX_DELETE_ATTEMPTS: int = 50  # Maximum messages to attempt deletion
+DELETE_DELAY: float = (
+    0.30  # Delay between delete requests (seconds) to prevent API flood
+)
 
 
 @router.message(F.text.lower() == "clear history")
 async def cmd_cleanup(message: Message) -> None:
-    """/clean history command"""
+    """
+    Handle "Clear history" button press to delete recent messages.
+
+    Attempts to delete up to MAX_DELETE_ATTEMPTS messages backwards from
+    the current message. Handles various error cases gracefully:
+    - Already deleted messages are skipped
+    - Old messages that can't be deleted (too old) stop the process
+    - Other errors are logged and operation is halted
+
+    Uses DELETE_DELAY between requests to prevent Telegram API flooding.
+
+    Args:
+        message: Aiogram Message object from the "Clear history" button press
+
+    Side effects:
+        - Sends deletion status response to user
+        - Deletes up to MAX_DELETE_ATTEMPTS messages from chat
+        - Logs cleanup operation and any errors
+        - Removes reply keyboard after operation
+        - On error, sends error message to user
+    """
 
     user_id = message.from_user.id
     chat_id = message.chat.id
 
     deleted_count = 0
 
-    logger.info(f"Cleanup requested from user > {user_id} in chat: {chat_id}")
+    logger.info("Cleanup requested from user > %s in chat: %s", user_id, chat_id)
 
     try:
         for msg_id in range(
@@ -41,7 +66,7 @@ async def cmd_cleanup(message: Message) -> None:
                 if "can't delete message" in str(e).lower():  # old messages
                     break
 
-                logger.warning(f"Cant' delete message with id > {msg_id}: {e}")
+                logger.warning("Can't delete message with id > %s: %s", msg_id, e)
                 break
 
         await message.answer(
@@ -50,5 +75,5 @@ async def cmd_cleanup(message: Message) -> None:
         )
 
     except Exception as e:
-        logger.error(f"Error while clearing history: {e}", exc_info=True)
+        logger.error("Error while clearing history: %s", e, exc_info=True)
         await message.answer("An error occurred while cleaning. Please try again later")

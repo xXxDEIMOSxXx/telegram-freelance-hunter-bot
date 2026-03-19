@@ -8,7 +8,30 @@ Base = declarative_base()
 
 
 class TelegramMessage(Base):  # pylint: disable=too-few-public-methods
-    """Telegram messages history model"""
+    """
+    SQLAlchemy ORM model for Telegram messages history.
+
+    Stores metadata and content of messages processed by the bot including:
+    - Message identifiers and timestamps
+    - Chat and sender information
+    - Keyword detection results
+    - Spam/scam detection (blacklist status)
+    - Notification flags
+
+    Attributes:
+        message_id: Primary key, auto-incremented message identifier
+        message_datetime: UTC timestamp when message was received (auto-set)
+        chat_title: Title of the Telegram chat/channel
+        chat_id: Unique Telegram chat identifier
+        sender_id: Telegram user ID of message sender
+        have_keyword: Boolean flag indicating if message contains keywords
+        keyword: Matched keyword (or "-" if none found)
+        not_scum: Boolean flag for user blacklist status (False = blacklisted)
+        notify: Boolean flag to trigger bot notification (keyword found AND not blacklisted)
+        message_text: Full text content of the message
+
+    Table name: telegram_bot_messages_history
+    """
 
     # ToDo for future: in case of expanding/complicating the structure,  # pylint: disable=fixme
     #  divide the general table into subtables: users, chats, history, etc.

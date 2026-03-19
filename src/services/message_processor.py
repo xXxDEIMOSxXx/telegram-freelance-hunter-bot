@@ -1,4 +1,12 @@
-"""Message processor"""
+"""Message processor service
+
+Handles incoming Telegram messages by:
+1. Extracting message text and metadata
+2. Checking for keywords and blacklist status
+3. Determining if notification should be sent
+4. Persisting message data to database"""
+
+from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql import func
@@ -10,9 +18,45 @@ from src.utils.logger import logger
 
 
 async def process_message(
-    event, chat_link: str, session: AsyncSession
-) -> dict[str, bool]:
-    """Process message func"""
+    event: Any, chat_link: str, session: AsyncSession
+) -> dict[str, Any]:
+    """
+    Process incoming Telegram message and determine if notification needed.
+
+    Performs the following checks:
+    1. Extracts message text from event
+    2. Searches for keywords in the message
+    3. Checks if sender is blacklisted
+    4. Determines notification eligibility (has keyword AND not blacklisted)
+    5. Saves message data to database
+    6. Returns appropriate response with notification flag
+
+    Args:
+        event: Telethon NewMessage event object containing:
+            - raw_text: Message text content
+            - sender_id: User ID of message sender (can be None for restricted channels)
+            - chat: Chat object with title and id
+        chat_link: URL/link to the chat where message originated
+        session: AsyncSession for database operations
+
+    Returns:
+        dict[str, Any]: Response dictionary containing:
+            - notify: Boolean flag indicating if bot should send notification
+            - keyword: (if notify=True) The matched keyword
+            - text: (if notify=True) Full message text
+            - chat_title: (if notify=True) Title of the source chat
+            - chat_link: (if notify=True) Link to the chat
+
+    Side effects:
+        - Saves message to database via save_message()
+        - Logs processed message with relevant metadata
+        - Modifies database state
+
+    Notes:
+        - sender_id defaults to 0 for restricted channels (prevents system errors)
+        - Messages with no keywords or blacklisted senders are not notified
+        - Uses keyword forms detection (Ukrainian/Russian/English morphology)
+    """
 
     text = event.raw_text or ""
 
@@ -42,8 +86,14 @@ async def process_message(
 
     if notify:
         logger.info(
-            f"✓ Message processed | chat={event.chat.title} | sender_id={sender_id} "
-            f"| not_scum={not_scum} | keyword={have_keyword} | notify={notify} | text={text}"
+            "✓ Message processed | chat=%s | sender_id=%s | not_scum=%s | "
+            "keyword=%s | notify=%s | text=%s",
+            event.chat.title,
+            sender_id,
+            not_scum,
+            have_keyword,
+            notify,
+            text,
         )
 
         return {
@@ -57,8 +107,14 @@ async def process_message(
     text_trunc = ((text[:50] + "...") if len(text) > 50 else text).replace("\n", " ")
 
     logger.info(
-        f"× Message processed | chat={event.chat.title} | sender_id={sender_id} "
-        f"| not_scum={not_scum} | keyword={have_keyword} | notify={notify} | text={text_trunc}"
+        "× Message processed | chat=%s | sender_id=%s | not_scum=%s | "
+        "keyword=%s | notify=%s | text=%s",
+        event.chat.title,
+        sender_id,
+        not_scum,
+        have_keyword,
+        notify,
+        text_trunc,
     )
 
     return {"notify": False}

@@ -1,6 +1,7 @@
-"""
-Service that generates keyword forms (for wider search range)
-and find this keywords in telegram messages
+"""Keyword detection and word forms generation service
+
+Generates morphological word forms for keywords (Ukrainian/Russian via pymorphy3,
+English via inflect) and searches for them in message text for fast detection.
 """
 
 import json
@@ -18,13 +19,55 @@ p_en = inflect.engine()
 
 
 class KeywordService:
-    """Keyword service class"""
+    """
+    Keyword detection service with morphological word form generation.
 
-    def __init__(self):
+    Features:
+    - Loads keywords from JSON configuration
+    - Generates all possible word forms for comprehensive search
+    - Caches word forms in memory for fast lookup
+    - Supports Ukrainian, Russian (pymorphy3), and English (inflect) morphology
+    - Performs O(n) search in message text for efficiency
+
+    Attributes:
+        _cache: Set of all generated keyword forms, or None if not loaded
+    """
+
+    def __init__(self) -> None:
+        """Initialize keyword service with empty cache."""
         self._cache: set[str] | None = None
 
     def _load_keyword_forms(self) -> None:
-        """Load keywords from file > generate word forms → save in cache (one time)"""
+        """
+        Load keywords from JSON file and generate all word forms (lazy load).
+
+        Process:
+        1. Read keywords from settings.KEYWORDS_FILE
+        2. Extract keywords from each category
+        3. Generate morphological forms for each keyword
+        4. Cache all unique forms in memory
+
+        Expected JSON structure:
+            {
+                "categories": {
+                    "category_name": {
+                        "keywords": [
+                            {"term": "keyword1"},
+                            {"term": "keyword2"}
+                        ]
+                    }
+                }
+            }
+
+        Side effects:
+            - Populates self._cache with all generated word forms
+            - Logs success/error messages via logger
+            - Creates empty set if file missing or JSON invalid
+
+        Notes:
+            - Only loads once - subsequent calls check if already loaded
+            - Uses _get_word_forms() for morphological analysis
+        """
 
         if self._cache is not None:
             return
@@ -32,7 +75,7 @@ class KeywordService:
         try:
             keywords_path = settings.KEYWORDS_FILE
             if not keywords_path.exists():
-                logger.error(f"Keywords file not found: {keywords_path}")
+                logger.error("Keywords file not found: %s", keywords_path)
                 self._cache = set()
                 return
 
@@ -57,16 +100,29 @@ class KeywordService:
             )
 
         except Exception as e:
-            logger.critical(f"Failed to generate keyword forms: {e}", exc_info=True)
+            logger.critical("Failed to generate keyword forms: %s", e, exc_info=True)
             self._cache = set()
 
     @staticmethod
     def _get_word_forms(words_list: set[str]) -> set[str]:
         """
-        Generates all possible word forms from keywords.json
-        (Ukrainian/russian via pymorphy3, English via inflect).
-        Returns a set of unique forms.
+        Generate all possible morphological word forms from keywords.
+
+        Handles multiple languages:
+        - Ukrainian/Russian: Uses pymorphy3 MorphAnalyzer
+        - English: Uses inflect library for pluralization
+        - Mixed/Unknown: Adds as-is to forms
+
+        Args:
+            words_list: Set of keyword terms to generate forms for
+
+        Returns:
+            set[str]: All unique word forms (lowercase) including:
+                - Original forms
+                - Singular/plural variants
+                - Grammatical cases (for Ukrainian/Russian)
         """
+
         all_forms = set()
         for word in words_list:
             w = word.lower().strip()
@@ -94,13 +150,45 @@ class KeywordService:
         return all_forms
 
     def preload(self) -> None:
-        """Force generate keyword forms at startup"""
+        """
+        Force preload keyword forms at application startup.
+
+        Ensures all word forms are loaded before message processing begins.
+        Called during bootstrap to avoid lazy loading delays during message handling.
+
+        Side effects:
+            - Calls _load_keyword_forms() to populate cache
+            - Logs any errors that occur
+        """
 
         if self._cache is None:
             self._load_keyword_forms()
 
     def find_keyword_in_message_text(self, message_text: str) -> tuple[bool, str]:
-        """Fast keyword search in message text"""
+        """
+        Fast keyword search in message text.
+
+        Performs substring search of all cached keyword forms in lowercase message.
+        Stops at first match for efficiency.
+
+        Args:
+            message_text: Message text to search
+
+        Returns:
+            tuple[bool, str]: Tuple containing:
+                - bool: True if any keyword form found, False otherwise
+                - str: Matched keyword form (or "-" if not found)
+
+        Side effects:
+            - Calls _load_keyword_forms() if cache not yet initialized
+            - Logs warning if lazy loading occurs
+            - Logs error if search fails
+
+        Notes:
+            - Performs case-insensitive search
+            - Uses substring matching (not word boundaries)
+            - Returns first match found
+        """
 
         try:
             if self._cache is None:
@@ -113,8 +201,8 @@ class KeywordService:
                     return True, form
             return False, "-"
         except Exception as e:
-            logger.error(f"Keyword search failed: {e}", exc_info=True)
+            logger.error("Keyword search failed: %s", e, exc_info=True)
             return False, "-"
 
 
-get_keywords = KeywordService()
+get_keywords: KeywordService = KeywordService()

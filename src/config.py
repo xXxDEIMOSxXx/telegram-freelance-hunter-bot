@@ -7,7 +7,32 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Class for loading and accessing configuration from .env"""
+    """
+    Application settings loaded from .env file using Pydantic.
+
+    Manages configuration for:
+    - Telegram API credentials (Telethon)
+    - Telegram Bot credentials (aiogram)
+    - PostgreSQL database connection
+    - Data file paths
+
+    Attributes:
+        API_ID: Telegram API ID for Telethon client
+        API_HASH: Telegram API hash for Telethon client
+        BOT_TOKEN: Telegram bot token from BotFather
+        BOT_CHAT_ID: Chat ID where bot forwards filtered messages
+        LANG_CODE: Language code for bot user (e.g., 'en')
+        SYSTEM_LANG_CODE: System language code (e.g., 'en-US')
+        DB_HOST: PostgreSQL database host
+        DB_PORT: PostgreSQL database port
+        DB_USER: PostgreSQL database user
+        DB_PASSWORD: PostgreSQL database password
+        DB_NAME: PostgreSQL database name
+        DATA_DIR: Directory for data files (default: 'data')
+        CHATS_FILE: Path to chats configuration file
+        KEYWORDS_FILE: Path to keywords configuration file
+        BLACKLIST_FILE: Path to blacklist configuration file
+    """
 
     model_config = SettingsConfigDict(
         env_file=".env",

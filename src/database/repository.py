@@ -1,4 +1,8 @@
-"""Repository for async interaction with telegram_bot_messages_history db table"""
+"""Repository for async interaction with telegram_bot_messages_history database table
+
+This module provides data access layer for persisting Telegram messages
+to the PostgreSQL database.
+"""
 
 from typing import Any, Dict
 
@@ -10,7 +14,37 @@ from src.utils.logger import logger
 
 
 async def save_message(session: AsyncSession, message_data: Dict[str, Any]) -> int:
-    """Save message to database"""
+    """
+    Save a Telegram message to the database.
+
+    Persists message metadata and content to the telegram_bot_messages_history table.
+    Automatically commits the transaction on success or rolls back on failure.
+
+    Args:
+        session: AsyncSession instance for database operations
+        message_data: Dictionary containing message fields:
+            - message_datetime: Message timestamp (datetime with timezone)
+            - chat_title: Title of the chat/channel
+            - chat_id: Telegram chat ID
+            - sender_id: Telegram sender/user ID
+            - have_keyword: Boolean indicating if keywords were found
+            - keyword: Matched keyword string (or "-" if none)
+            - not_scum: Boolean indicating if sender is not blacklisted
+            - notify: Boolean indicating if bot should notify
+            - message_text: Full message text content
+
+    Returns:
+        int: The auto-generated message_id of the saved message
+
+    Raises:
+        Exception: If database operation fails (logged with traceback)
+
+    Side effects:
+        - Commits changes to database on success
+        - Rolls back transaction on exception
+        - Logs info message on success with inserted message ID
+        - Logs error with traceback on failure
+    """
 
     message_statement = (
         insert(TelegramMessage)
@@ -32,9 +66,9 @@ async def save_message(session: AsyncSession, message_data: Dict[str, Any]) -> i
         result: Result = await session.execute(message_statement)
         await session.commit()
         inserted_id: int = result.scalar_one()
-        logger.info(f"Message saved to database with ID: {inserted_id}")
+        logger.info("Message saved to database with ID: %s", inserted_id)
         return inserted_id
     except Exception as e:
         await session.rollback()
-        logger.error(f"Message saving error: {e}", exc_info=True)
+        logger.error("Message saving error: %s", e, exc_info=True)
         raise
