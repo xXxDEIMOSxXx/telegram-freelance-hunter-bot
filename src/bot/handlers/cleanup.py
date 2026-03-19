@@ -1,6 +1,6 @@
 """Bot message history cleanup handler
 
-Handles "Clear history" button press to delete recent bot messages from chat.
+Handles "Clear history" button press to delete recent bot messages from chat
 """
 
 import asyncio
@@ -22,7 +22,7 @@ DELETE_DELAY: float = (
 @router.message(F.text.lower() == "clear history")
 async def cmd_cleanup(message: Message) -> None:
     """
-    Handle "Clear history" button press to delete recent messages.
+    Handle "Clear history" button press to delete recent messages
 
     Attempts to delete up to MAX_DELETE_ATTEMPTS messages backwards from
     the current message. Handles various error cases gracefully:
@@ -30,7 +30,7 @@ async def cmd_cleanup(message: Message) -> None:
     - Old messages that can't be deleted (too old) stop the process
     - Other errors are logged and operation is halted
 
-    Uses DELETE_DELAY between requests to prevent Telegram API flooding.
+    Uses DELETE_DELAY between requests to prevent Telegram API flooding
 
     Args:
         message: Aiogram Message object from the "Clear history" button press

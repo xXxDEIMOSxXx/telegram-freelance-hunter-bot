@@ -230,3 +230,4 @@ ToDoList.txt
 # Environment and secrets
 .env.local
 .env.*.local
+/.idea/copilot.data.migration.ask2agent.xml

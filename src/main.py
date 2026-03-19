@@ -17,7 +17,7 @@ from src.utils.logger import logger
 
 async def main() -> None:
     """
-    Main application entry point.
+    Main application entry point
 
     Orchestrates the complete application startup:
     1. Runs bootstrap initialization (database, API connection, caches)
@@ -26,8 +26,8 @@ async def main() -> None:
     4. Starts Telethon client for event monitoring
     5. Starts aiogram dispatcher for polling bot updates
 
-    The application runs until interrupted (Ctrl+C).
-    If bootstrap fails, the application exits without starting services.
+    The application runs until interrupted (Ctrl+C)
+    If bootstrap fails, the application exits without starting services
 
     Side effects:
         - Initializes all application services

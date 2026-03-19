@@ -1,6 +1,6 @@
 """Bot /start command handler
 
-Handles user /start command with welcome message and keyboard.
+Handles user /start command with welcome message and keyboard
 """
 
 from aiogram import Router
@@ -17,9 +17,9 @@ router = Router()
 @router.message(Command("start"))
 async def cmd_start(message: Message) -> None:
     """
-    Handle /start command from user.
+    Handle /start command from user
 
-    Sends welcome message and displays reply keyboard with cleanup option.
+    Sends welcome message and displays reply keyboard with cleanup option
 
     Args:
         message: Aiogram Message object containing user info and chat context

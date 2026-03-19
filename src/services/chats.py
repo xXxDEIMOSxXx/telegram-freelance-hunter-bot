@@ -1,6 +1,6 @@
 """Chat/group configuration management
 
-Loads monitored Telegram chats and groups configuration from JSON file.
+Loads monitored Telegram chats and groups configuration from JSON file
 """
 
 import json
@@ -11,10 +11,10 @@ from src.utils.logger import logger
 
 def get_chats_data() -> list[dict]:
     """
-    Load monitored channels and groups configuration from JSON file.
+    Load monitored channels and groups configuration from JSON file
 
-    Reads the chats configuration file and returns the list of chat entries.
-    Each entry contains chat metadata (ID, title, etc.) for the bot to monitor.
+    Reads the chats configuration file and returns the list of chat entries
+    Each entry contains chat metadata (ID, title, etc.) for the bot to monitor
 
     Expected JSON structure:
         [

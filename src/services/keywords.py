@@ -1,7 +1,7 @@
 """Keyword detection and word forms generation service
 
 Generates morphological word forms for keywords (Ukrainian/Russian via pymorphy3,
-English via inflect) and searches for them in message text for fast detection.
+English via inflect) and searches for them in message text for fast detection
 """
 
 import json
@@ -20,7 +20,7 @@ p_en = inflect.engine()
 
 class KeywordService:
     """
-    Keyword detection service with morphological word form generation.
+    Keyword detection service with morphological word form generation
 
     Features:
     - Loads keywords from JSON configuration
@@ -34,12 +34,12 @@ class KeywordService:
     """
 
     def __init__(self) -> None:
-        """Initialize keyword service with empty cache."""
+        """Initialize keyword service with empty cache"""
         self._cache: set[str] | None = None
 
     def _load_keyword_forms(self) -> None:
         """
-        Load keywords from JSON file and generate all word forms (lazy load).
+        Load keywords from JSON file and generate all word forms (lazy load)
 
         Process:
         1. Read keywords from settings.KEYWORDS_FILE
@@ -106,7 +106,7 @@ class KeywordService:
     @staticmethod
     def _get_word_forms(words_list: set[str]) -> set[str]:
         """
-        Generate all possible morphological word forms from keywords.
+        Generate all possible morphological word forms from keywords
 
         Handles multiple languages:
         - Ukrainian/Russian: Uses pymorphy3 MorphAnalyzer
@@ -151,10 +151,10 @@ class KeywordService:
 
     def preload(self) -> None:
         """
-        Force preload keyword forms at application startup.
+        Force preload keyword forms at application startup
 
-        Ensures all word forms are loaded before message processing begins.
-        Called during bootstrap to avoid lazy loading delays during message handling.
+        Ensures all word forms are loaded before message processing begins
+        Called during bootstrap to avoid lazy loading delays during message handling
 
         Side effects:
             - Calls _load_keyword_forms() to populate cache
@@ -166,10 +166,10 @@ class KeywordService:
 
     def find_keyword_in_message_text(self, message_text: str) -> tuple[bool, str]:
         """
-        Fast keyword search in message text.
+        Fast keyword search in message text
 
-        Performs substring search of all cached keyword forms in lowercase message.
-        Stops at first match for efficiency.
+        Performs substring search of all cached keyword forms in lowercase message
+        Stops at first match for efficiency
 
         Args:
             message_text: Message text to search

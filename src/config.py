@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     """
-    Application settings loaded from .env file using Pydantic.
+    Application settings loaded from .env file using Pydantic
 
     Manages configuration for:
     - Telegram API credentials (Telethon)

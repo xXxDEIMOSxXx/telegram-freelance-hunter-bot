@@ -1,7 +1,7 @@
 """Blacklist service for filtering messages by sender
 
-Manages user blacklist to prevent notifications from known spam/scam senders.
-Uses JSON file-based storage with in-memory caching for performance.
+Manages user blacklist to prevent notifications from known spam/scam senders
+Uses JSON file-based storage with in-memory caching for performance
 """
 
 import json
@@ -14,10 +14,10 @@ from src.utils.logger import logger
 
 class BlacklistService:
     """
-    Blacklist service for managing spam/scam user IDs.
+    Blacklist service for managing spam/scam user IDs
 
-    Loads blacklisted user IDs from a JSON file and caches them in memory.
-    Provides fast O(1) lookup to check if a user is blacklisted.
+    Loads blacklisted user IDs from a JSON file and caches them in memory
+    Provides fast O(1) lookup to check if a user is blacklisted
 
     Attributes:
         _cache: Set of blacklisted user IDs, or None if not yet loaded
@@ -29,11 +29,11 @@ class BlacklistService:
 
     def _load(self) -> None:
         """
-        Load blacklist from JSON file into memory cache (lazy load).
+        Load blacklist from JSON file into memory cache (lazy load)
 
         Reads the blacklist JSON file and extracts user IDs into a set for
         fast membership checking. Only loads once - subsequent calls check
-        if already loaded.
+        if already loaded
 
         Expected JSON structure:
             [
@@ -69,9 +69,9 @@ class BlacklistService:
 
     def is_blacklisted(self, user_id: int) -> bool:
         """
-        Check if a user ID is in the blacklist.
+        Check if a user ID is in the blacklist
 
-        Performs lazy loading if cache not yet populated.
+        Performs lazy loading if cache not yet populated
 
         Args:
             user_id: Telegram user ID to check
@@ -91,10 +91,10 @@ class BlacklistService:
 
     def preload(self) -> None:
         """
-        Force preload blacklist at application startup.
+        Force preload blacklist at application startup
 
-        Ensures blacklist is loaded before any message processing begins.
-        Called during bootstrap to avoid lazy loading delays.
+        Ensures blacklist is loaded before any message processing begins
+        Called during bootstrap to avoid lazy loading delays
 
         Side effects:
             - Calls _load() to populate cache

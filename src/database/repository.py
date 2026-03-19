@@ -1,7 +1,7 @@
 """Repository for async interaction with telegram_bot_messages_history database table
 
 This module provides data access layer for persisting Telegram messages
-to the PostgreSQL database.
+to the PostgreSQL database
 """
 
 from typing import Any, Dict
@@ -15,10 +15,10 @@ from src.utils.logger import logger
 
 async def save_message(session: AsyncSession, message_data: Dict[str, Any]) -> int:
     """
-    Save a Telegram message to the database.
+    Save a Telegram message to the database
 
-    Persists message metadata and content to the telegram_bot_messages_history table.
-    Automatically commits the transaction on success or rolls back on failure.
+    Persists message metadata and content to the telegram_bot_messages_history table
+    Automatically commits the transaction on success or rolls back on failure
 
     Args:
         session: AsyncSession instance for database operations

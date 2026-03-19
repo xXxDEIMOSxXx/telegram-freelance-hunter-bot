@@ -16,7 +16,7 @@ from src.utils.logger import logger
 
 async def bootstrap() -> bool:
     """
-    Coordinate initialization of all application components.
+    Coordinate initialization of all application components
 
     Performs startup checks and initialization in sequence:
     1. Validates Telegram API connection
@@ -24,7 +24,7 @@ async def bootstrap() -> bool:
     3. Preloads keyword forms cache
     4. Preloads blacklist cache
 
-    All steps must complete successfully for the application to start.
+    All steps must complete successfully for the application to start
 
     Returns:
         bool: True if all bootstrap steps succeed, False otherwise

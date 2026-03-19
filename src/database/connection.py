@@ -39,11 +39,11 @@ async_session: async_sessionmaker = async_sessionmaker(
 
 def ensure_database_exists() -> None:
     """
-    Create PostgreSQL database if it doesn't exist.
+    Create PostgreSQL database if it doesn't exist
 
     Connects to the PostgreSQL service database to check if the application
     database exists. If not, creates it. Uses synchronous connection since
-    database creation requires AUTOCOMMIT isolation level.
+    database creation requires AUTOCOMMIT isolation level
 
     Raises:
         Exception: If database connection or creation fails
@@ -78,11 +78,11 @@ def ensure_database_exists() -> None:
 
 async def create_tables() -> None:
     """
-    Create all database tables defined in SQLAlchemy models.
+    Create all database tables defined in SQLAlchemy models
 
     Uses the declarative Base metadata to create tables based on
     registered models (TelegramMessage). Creates tables only if they
-    don't exist.
+    don't exist
 
     Raises:
         Exception: If table creation fails
@@ -100,14 +100,14 @@ async def create_tables() -> None:
 
 async def init_database() -> None:
     """
-    Initialize PostgreSQL database connection and setup.
+    Initialize PostgreSQL database connection and setup
 
     Performs full database initialization:
     1. Ensures database exists (creates if needed)
     2. Creates all required tables
     3. Tests the connection with a simple SELECT query
 
-    This function should be called during application bootstrap.
+    This function should be called during application bootstrap
 
     Raises:
         Exception: If any initialization step fails (logged but not re-raised)

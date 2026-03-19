@@ -9,7 +9,7 @@ Base = declarative_base()
 
 class TelegramMessage(Base):  # pylint: disable=too-few-public-methods
     """
-    SQLAlchemy ORM model for Telegram messages history.
+    SQLAlchemy ORM model for Telegram messages history
 
     Stores metadata and content of messages processed by the bot including:
     - Message identifiers and timestamps

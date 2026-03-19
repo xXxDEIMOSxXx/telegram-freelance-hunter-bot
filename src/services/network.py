@@ -1,7 +1,7 @@
 """Network connectivity validation service
 
 Checks Telegram API connectivity during application bootstrap to ensure
-the bot can communicate with Telegram servers before starting.
+the bot can communicate with Telegram servers before starting
 """
 
 from aiohttp import ClientSession, ClientTimeout
@@ -12,15 +12,15 @@ from src.utils.logger import logger
 
 async def check_telegram_api_connection() -> None:
     """
-    Validate Telegram API accessibility using bot token.
+    Validate Telegram API accessibility using bot token
 
     Makes an HTTP request to Telegram Bot API getMe endpoint to verify:
     - Network connectivity to Telegram servers
     - Bot token validity
     - Telegram service availability
 
-    Uses a short 3-second timeout to fail fast if connection issues occur.
-    Failures are logged but don't halt application startup (graceful degradation).
+    Uses a short 3-second timeout to fail fast if connection issues occur
+    Failures are logged but don't halt application startup (graceful degradation)
 
     API endpoint: https://api.telegram.org/bot{token}/getMe
 

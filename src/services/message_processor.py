@@ -21,7 +21,7 @@ async def process_message(
     event: Any, chat_link: str, session: AsyncSession
 ) -> dict[str, Any]:
     """
-    Process incoming Telegram message and determine if notification needed.
+    Process incoming Telegram message and determine if notification needed
 
     Performs the following checks:
     1. Extracts message text from event

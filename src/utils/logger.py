@@ -1,7 +1,7 @@
 """Logger utility for colored console output
 
 Provides a colored logger instance with custom SUCCESS level and formatted output
-using colorama for cross-platform color support.
+using colorama for cross-platform color support
 """
 
 import logging
@@ -14,7 +14,7 @@ init(autoreset=True)  # autoreset string color
 
 class ColoredFormatter(logging.Formatter):
     """
-    Custom logging formatter with color-coded log levels.
+    Custom logging formatter with color-coded log levels
 
     Adds color to log output for better visibility and debugging:
     - DEBUG: Cyan
@@ -40,7 +40,7 @@ class ColoredFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """
-        Format log record with color based on log level.
+        Format log record with color based on log level
 
         Args:
             record: LogRecord to format
@@ -61,7 +61,7 @@ def setup_logger(
     log_file: str = "bot.log",
 ) -> logging.Logger:
     """
-    Setup and configure a logger instance with console and optional file output.
+    Setup and configure a logger instance with console and optional file output
 
     Creates a logger with:
     - Colored console output (uses ColoredFormatter)
@@ -107,7 +107,7 @@ def setup_logger(
         self: logging.Logger, message: str, *args: object, **kwargs: object
     ) -> None:
         """
-        Log a success message at custom SUCCESS level (25).
+        Log a success message at custom SUCCESS level (25)
 
         Args:
             self: Logger instance

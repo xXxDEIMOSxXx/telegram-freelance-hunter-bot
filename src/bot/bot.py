@@ -1,7 +1,7 @@
 """Bot initialization using aiogram framework
 
 Creates and configures the aiogram bot dispatcher with message handlers
-for handling user commands and interactions.
+for handling user commands and interactions
 """
 
 from aiogram import Bot, Dispatcher
@@ -13,7 +13,7 @@ from src.utils.logger import logger
 
 def create_bot() -> tuple[Bot, Dispatcher]:
     """
-    Create and configure the aiogram bot with dispatcher.
+    Create and configure the aiogram bot with dispatcher
 
     Initializes:
     - Bot instance with token from settings

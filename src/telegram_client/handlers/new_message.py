@@ -1,7 +1,7 @@
 """Telethon new message event handler
 
-Registers and handles new messages from monitored Telegram chats/channels.
-Processes messages for keywords and forwards relevant ones to admin chat.
+Registers and handles new messages from monitored Telegram chats/channels
+Processes messages for keywords and forwards relevant ones to admin chat
 """
 
 from typing import Any
@@ -18,7 +18,7 @@ from src.utils.logger import logger
 
 def register_message_handler(client: TelegramClient, bot: Bot) -> None:
     """
-    Register and initialize new message event handler for monitored chats.
+    Register and initialize new message event handler for monitored chats
 
     Sets up a Telethon event listener that:
     1. Monitors specified chats for new messages
@@ -26,8 +26,8 @@ def register_message_handler(client: TelegramClient, bot: Bot) -> None:
     3. Forwards qualifying messages to admin chat via aiogram bot
     4. Prevents duplicate processing with simple key tracking
 
-    The handler uses cached chat data to map chat IDs to URLs for fast lookup.
-    Processed messages are tracked to prevent double-processing.
+    The handler uses cached chat data to map chat IDs to URLs for fast lookup
+    Processed messages are tracked to prevent double-processing
 
     Args:
         client: Telethon TelegramClient instance for event listening
@@ -60,7 +60,7 @@ def register_message_handler(client: TelegramClient, bot: Bot) -> None:
     @client.on(events.NewMessage(chats=chat_ids))
     async def handler(event: events.NewMessage.Event) -> None:
         """
-        Handle new message event from monitored chats.
+        Handle new message event from monitored chats
 
         Args:
             event: Telethon NewMessage event containing message and chat info
