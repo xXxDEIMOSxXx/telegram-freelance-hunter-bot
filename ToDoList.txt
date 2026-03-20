@@ -4,3 +4,4 @@
 3. models.py > divide the general table into subtables: users, chats, history, etc.
 4. models.py > add indexes - if database continue to growing
 5. start.py / cleanup.py > make nice inline keyboard / menu, change start message
+6. keywords.py > check and improve possible word forms generation
