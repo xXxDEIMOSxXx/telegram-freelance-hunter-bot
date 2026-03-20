@@ -1566,6 +1566,18 @@ files = [
 ]
 
 [[package]]
+name = "pymorphy3-dicts-uk"
+version = "2.4.1.1.1663094765"
+description = "Ukrainian dictionaries for pymorphy3"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pymorphy3-dicts-uk-2.4.1.1.1663094765.tar.gz", hash = "sha256:b3945a34136e193806cde657ba271d88a60761e75137c13d138a8d142a8d12ac"},
+    {file = "pymorphy3_dicts_uk-2.4.1.1.1663094765-py2.py3-none-any.whl", hash = "sha256:6af1e389b69e7e90ef7d50b20e3955a0c78383317a15d9ade5979f1536354733"},
+]
+
+[[package]]
 name = "pytest"
 version = "9.0.2"
 description = "pytest: simple powerful testing with Python"
@@ -2147,4 +2159,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<3.15"
-content-hash = "19105ef462e856e4529060b5a5da6c9669809a3daff3fd26891f4c6b394d2a62"
+content-hash = "8dcf289d11edc2c123d360f4b8995277ecabfdd8abcd26596f78bd7373ec0987"

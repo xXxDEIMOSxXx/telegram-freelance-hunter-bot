@@ -90,13 +90,45 @@ Telegram Chats
 
 ## Commands
 
-| Action                  | Command                                              |
-|:------------------------|:-----------------------------------------------------|
-| Install dependencies    | `poetry install`                                     |
-| Run the bot             | `poetry run python src/main.py`                      |
-| Run tests               | `poetry run pytest`                                  |
-| Run tests with coverage | `poetry run pytest --cov`                            |
-| Pre-commit lint check   | `poetry run pre-commit run --all-files`              |
+### Main workflow via `Makefile`
+
+| Action | Command |
+|:-------|:--------|
+| Show all shortcuts | `make help` |
+| Install dependencies | `make install` |
+| Run the bot locally | `make run-local` |
+| Run tests | `make test` |
+| Run tests with coverage | `make test-cov` |
+| Run lint checks | `make lint` |
+| Auto-format code | `make format` |
+| Run pre-commit hooks | `make pre-commit` |
+| Build Docker images | `make build` |
+| Start Docker services | `make up` |
+| Show Docker status | `make ps` |
+| Follow Docker logs | `make logs` |
+| Stop Docker services | `make down` |
+
+### Raw commands (optional reference)
+
+```bash
+# local development
+poetry install --no-root
+poetry run python src/main.py
+poetry run pytest
+poetry run pytest --cov=src --cov-report=term-missing --cov-report=xml
+poetry run ruff check .
+poetry run pylint src
+poetry run isort src tests
+poetry run ruff format .
+poetry run pre-commit run --all-files
+
+# docker
+docker compose -f docker/docker-compose.yml --env-file .env build
+docker compose -f docker/docker-compose.yml --env-file .env up -d --build
+docker compose -f docker/docker-compose.yml --env-file .env ps
+docker compose -f docker/docker-compose.yml --env-file .env logs -f
+docker compose -f docker/docker-compose.yml --env-file .env down
+```
 
 ---
 
@@ -306,8 +338,15 @@ Lint: ruff check src tests → All checks passed
 Run tests:
 
 ```bash
+make test
+make test-cov
+```
+
+Raw equivalent:
+
+```bash
 poetry run pytest
-poetry run pytest --cov
+poetry run pytest --cov=src --cov-report=term-missing --cov-report=xml
 ```
 
 ---
