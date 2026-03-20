@@ -1,0 +1,43 @@
+services:
+
+  # PostgreSQL database
+  db:
+    container_name: telegram_freelance_hunter_bot_database
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Bot application
+  bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: runtime
+    container_name: telegram_freelance_hunter_bot
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    environment:
+      DB_HOST: db  # Override DB_HOST so the bot connects to the db service, not localhost
+    volumes:
+      - ../data:/telegram-freelance-hunter-bot/data
+      - ../session.session:/telegram-freelance-hunter-bot/session.session
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
