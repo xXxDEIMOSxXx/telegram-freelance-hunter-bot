@@ -7,6 +7,9 @@
   <img src="https://img.shields.io/badge/PostgreSQL-asyncpg-336791?style=for-the-badge&logo=postgresql"/>
   <img src="https://img.shields.io/badge/SQLAlchemy-2.x-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white"/>
   <img src="https://img.shields.io/badge/pymorphy3%20%2B%20inflect-morphology%20engine-6A1B9A?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Linux-Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white"/>
   <img src="https://img.shields.io/badge/coverage-94%25-brightgreen?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/tests-86%20passed-success?style=for-the-badge"/>
 </p>
@@ -59,6 +62,7 @@ Telegram bots | Automation | Freelance tools | Python | Aiogram | Telethon | Pos
   - [Services](#services)
   - [Telegram Client](#telegram-client)
 - [Data Table](#data-table)
+- [Deploy](#deploy-on-server)
 - [Output](#output)
 - [Test Cases](#test-cases)
 - [Preview](#preview)
@@ -260,6 +264,62 @@ PostgreSQL table: `telegram_bot_messages_history`
 
 ---
 
+# Deploy On Server
+Tested on AWS EC2 with parameters:
+- OS Image: Ubuntu Server 24.04 LTS 64-bit (x86)
+- Instance type: t3.micro (2 vCPU, 1 GiB RAM)
+- Storage capacity: 8Gib
+- Storage type: general purpose SSD (gp3)
+
+## Quick Start
+
+1. Clone the project from GitHub:
+
+```bash
+git clone <THIS_REPO_URL>
+cd telegram-freelance-hunter-bot
+```
+
+2. Create `.env` with all required credentials (Telegram, bot token, database, etc.)
+
+```bash
+cp .env.example .env
+# or create manually if you do not have .env.example
+nano .env
+```
+
+3. Run first-time login container (creates Telethon session):
+
+```bash
+sudo make login
+```
+
+4. In the terminal prompt, enter your Telegram phone number and the confirmation code from Telegram
+
+5. Stop the login process when authorization is complete
+
+- If it is still running interactively, press `Ctrl+C`
+- The login container is started with `--rm`, so it is removed automatically
+
+6. Start the full stack in background:
+
+```bash
+sudo make up
+```
+
+7. Great, your project is running
+
+Optional checks:
+
+```bash
+sudo make ps
+sudo make logs
+```
+
+---
+
+## Output
+
 Console log (initialization):
 
 ```
@@ -277,8 +337,6 @@ Console log (initialization):
 ```
 
 ---
-
-## Output
 
 When a matching message is found, the bot sends the following to `BOT_CHAT_ID`:
 
