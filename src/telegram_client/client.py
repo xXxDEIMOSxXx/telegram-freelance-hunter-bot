@@ -38,7 +38,7 @@ def create_telegram_client(bot: Any) -> TelegramClient:
     """
 
     client = TelegramClient(
-        session="session",
+        session="/telegram-freelance-hunter-bot/sessions/bot",
         api_id=settings.API_ID,
         api_hash=settings.API_HASH,
         lang_code=settings.LANG_CODE,

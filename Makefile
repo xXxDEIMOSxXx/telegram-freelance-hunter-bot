@@ -5,6 +5,7 @@ POETRY = poetry run
 
 help:
 	@echo "Available targets:"
+	@echo "  make login    - For first start (to create bot session using phone number)"
 	@echo "  make build    - Build images"
 	@echo "  make up       - Start services in background"
 	@echo "  make down     - Stop and remove services"
@@ -18,6 +19,9 @@ help:
 	@echo "  make lint     - Run lint checks (ruff + pylint)"
 	@echo "  make format   - Auto-format code (isort + ruff format)"
 	@echo "  make pre-commit   - Pre-commit checks (isort + ruff check + pylint)"
+
+login:
+	$(COMPOSE) run --rm bot
 
 build:
 	$(COMPOSE) build

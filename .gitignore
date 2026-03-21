@@ -231,3 +231,6 @@ ToDoList.txt
 .env.local
 .env.*.local
 /.idea/copilot.data.migration.ask2agent.xml
+/sessions/session.session
+/sessions/session.session-journal
+/sessions/bot.session

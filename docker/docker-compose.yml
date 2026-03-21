@@ -34,7 +34,7 @@ services:
       DB_HOST: db  # Override DB_HOST so the bot connects to the db service, not localhost
     volumes:
       - ../data:/telegram-freelance-hunter-bot/data
-      - ../session.session:/telegram-freelance-hunter-bot/session.session
+      - ../sessions:/telegram-freelance-hunter-bot/sessions
     depends_on:
       db:
         condition: service_healthy
